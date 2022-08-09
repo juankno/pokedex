@@ -8,6 +8,7 @@ export const COLORS = {
     white: '#fff',
     white2: '#F9F9F9',
     black: '#020202',
+    black2: 'rgba(2, 2, 2, 0.7)',
     blue: '#4096FE',
     gray: '#777777',
     gray2: '#F8F8F8',
