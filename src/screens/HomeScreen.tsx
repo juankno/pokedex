@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text} from 'react-native';
+import { Image, StyleSheet, Text } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/StackNavigator';
 import { globalStyles } from '../theme/appTheme';
@@ -11,7 +11,9 @@ type Props = StackScreenProps<RootStackParamList, 'HomeScreen'>;
 const HomeScreen = ({ navigation }: Props) => {
 
     const { top } = useSafeAreaInsets();
-    usePokemonPaginated();
+    const { pokemons, isLoading } = usePokemonPaginated();
+
+    console.log(JSON.stringify(pokemons, null, 2));
 
     return (
         <>
