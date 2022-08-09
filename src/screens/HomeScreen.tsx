@@ -1,17 +1,17 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Image, StyleSheet, Text} from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/StackNavigator';
-import { COLORS } from '../theme/constants';
 import { globalStyles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import usePokemonPaginated from '../hooks/usePokemonPaginated';
 
 type Props = StackScreenProps<RootStackParamList, 'HomeScreen'>;
 
 const HomeScreen = ({ navigation }: Props) => {
 
     const { top } = useSafeAreaInsets();
+    usePokemonPaginated();
 
     return (
         <>
