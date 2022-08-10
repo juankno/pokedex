@@ -6,6 +6,7 @@ import { globalStyles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import usePokemonPaginated from '../hooks/usePokemonPaginated';
 import { COLORS } from '../theme/constants';
+import { FadeInImage } from '../components/FadeInImage';
 
 type Props = StackScreenProps<RootStackParamList, 'HomeScreen'>;
 
@@ -28,8 +29,8 @@ const HomeScreen = ({ navigation }: Props) => {
                 keyExtractor={(pokemon) => pokemon.id}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
-                    <Image
-                        source={{ uri: item.picture }}
+                    <FadeInImage
+                        uri={item.picture}
                         style={{
                             width: 100,
                             height: 100,
