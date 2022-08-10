@@ -4,8 +4,8 @@ import { Pokemon, PokemonResponse, SimplePokemon } from '../interfaces/PokemonIn
 
 const usePokemonPaginated = () => {
 
-    const [pokemons, setPokemons] = useState<SimplePokemon[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [pokemons, setPokemons] = useState<SimplePokemon[]>([]);
 
     const nextPageUrl = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
@@ -20,6 +20,7 @@ const usePokemonPaginated = () => {
     };
 
     const mapPokemonsList = (pokemonList: Pokemon[]) => {
+
         const newPokemons: SimplePokemon[] = pokemonList.map(({ name, url }) => {
 
             const ulrParts = url.split('/');
