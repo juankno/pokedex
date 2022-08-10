@@ -18,8 +18,6 @@ const PokemonScreen = ({ navigation, route }: Props) => {
 
     const { pokemon, isLoading } = usePokemon(id);
 
-    console.log(JSON.stringify(pokemon, null, 2));
-
     return (
         <View style={{ flex: 1 }}>
 
