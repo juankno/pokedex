@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { RootStackParamList } from '../navigation/StackNavigator';
@@ -7,38 +7,36 @@ import { COLORS } from '../theme/constants';
 
 type Props = StackScreenProps<RootStackParamList, 'PokemonScreen'>;
 
-const PokemonScreen = ({ navigation }: Props) => {
+const PokemonScreen = ({ navigation, route }: Props) => {
+
+    const { simplePokemon: pokemon, color } = route.params;
+
     return (
-        <View style={styles.container}>
+        <View style={{
+            ...styles.container,
+            backgroundColor: color,
+        }}>
 
             <View style={{
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <Icon name="happy-outline" size={30} color={COLORS.black} />
-                <Text>Pokemon Screen</Text>
-            </View>
-
-            <TouchableOpacity
-                onPress={() => navigation.navigate('HomeScreen')}
-                activeOpacity={0.8}
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    backgroundColor: COLORS.black,
-                    padding: 10,
-                    alignItems: 'center',
-                }}>
+                <Image
+                    source={{ uri: pokemon.picture }}
+                    style={{
+                        width: 100,
+                        height: 150,
+                    }}
+                    resizeMode="contain"
+                />
                 <Text style={{
                     color: COLORS.white,
-                    marginRight: 10,
-                    alignSelf: 'center', fontWeight: 'bold',
-                }}>
-                    Home
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                }}>{pokemon.name}
                 </Text>
-                <Icon name="home-outline" size={20} color={COLORS.white} />
-            </TouchableOpacity>
+            </View>
         </View>
     );
 };
