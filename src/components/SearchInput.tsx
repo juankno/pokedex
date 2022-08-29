@@ -1,5 +1,5 @@
-import { Platform, StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
+import { Platform, StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const SearchInput = () => {
