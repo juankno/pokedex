@@ -1,20 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../screens/HomeScreen';
 import PokemonScreen from '../screens/PokemonScreen';
+import SearchScreen from '../screens/SearchScreen';
 import { COLORS } from '../theme/constants';
-import { SimplePokemon } from '../interfaces/PokemonInterface';
-
-export type RootStackParamList = {
-    SearchScreen: undefined;
-    HomeScreen: undefined;
-    PokemonScreen: { simplePokemon: SimplePokemon, color: string };
-}
+import { RootStackParamList } from './StackNavigator';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const StackNavigator = () => {
+const StackSearchNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
@@ -24,10 +18,11 @@ const StackNavigator = () => {
                 },
             }}
         >
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen name="SearchScreen" component={SearchScreen} />
             <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
         </Stack.Navigator>
     );
 };
 
-export default StackNavigator;
+
+export default StackSearchNavigator;

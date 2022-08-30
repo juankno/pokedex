@@ -1,13 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SearchScreen from '../screens/SearchScreen';
-import StackNavigator from './StackNavigator';
 import { COLORS } from '../theme/constants';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import StackNavigator from './StackNavigator';
+import StackSearchNavigator from './SearchStackNavigator';
 
 export type BottomTabParamsList = {
-  SearchScreen: undefined;
+  SearchNavigator: undefined;
   StackNavigator: undefined;
 }
 
@@ -21,7 +21,7 @@ const BottomTabNavigator = () => {
       }}
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.primaryDark,
+        tabBarActiveTintColor: COLORS.successDark,
         tabBarLabelStyle: {
           marginBottom: (Platform.OS === 'ios') ? 0 : 10,
           color: COLORS.black,
@@ -51,8 +51,8 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="SearchScreen"
-        component={SearchScreen}
+        name="SearchNavigator"
+        component={StackSearchNavigator}
         options={{
           tabBarLabel: 'Buscar',
           tabBarIcon: ({ color }) => (
