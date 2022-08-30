@@ -40,7 +40,7 @@ const SearchScreen = () => {
             ...globalStyles.title,
             ...globalStyles.globalMargin,
             paddingBottom: 10,
-            marginTop: top + 60,
+            marginTop: (Platform.OS === 'ios') ? top + 60 : top + 70,
           }}>
             Pokedex
           </Text>
