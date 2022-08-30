@@ -24,12 +24,16 @@ const SearchScreen = () => {
   useEffect(() => {
     if (term.length === 0) { return setPokemonsFiltered([]); }
 
+    if (isNaN(Number(term))) {
 
-    setPokemonsFiltered(
-      pokemons.filter(p => p.name.toLocaleLowerCase()
-        .includes(term.toLocaleLowerCase()))
-    );
-
+      setPokemonsFiltered(
+        pokemons.filter(p => p.name.toLocaleLowerCase()
+          .includes(term.toLocaleLowerCase()))
+      );
+    } else {
+      const pokemonById = pokemons.find(p => p.id === term);
+      setPokemonsFiltered((pokemonById) ? [pokemonById] : []);
+    }
 
   }, [term]);
 
