@@ -1,11 +1,14 @@
 import React from 'react';
-import { FlatList, Platform, Text, View } from 'react-native';
+import { Dimensions, FlatList, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SearchInput from '../components/SearchInput';
 import usePokemonSearch from '../hooks/usePokemonSearch';
 import { globalStyles } from '../theme/appTheme';
 import PokemonCard from '../components/PokemonCard';
 import Loading from '../components/Loading';
+
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const SearchScreen = () => {
 
@@ -17,10 +20,14 @@ const SearchScreen = () => {
   return (
     <View style={{
       flex: 1,
-      marginTop: (Platform.OS === 'ios') ? top : top + 10,
       marginHorizontal: 20,
     }}>
-      <SearchInput />
+      <SearchInput style={{
+        position: 'absolute',
+        zIndex: 999,
+        width: SCREEN_WIDTH - 40,
+        top: (Platform.OS === 'ios') ? top : top + 20,
+      }} />
 
       <FlatList
         data={pokemons}
@@ -33,6 +40,7 @@ const SearchScreen = () => {
             ...globalStyles.title,
             ...globalStyles.globalMargin,
             paddingBottom: 10,
+            marginTop: top + 60,
           }}>
             Pokedex
           </Text>
