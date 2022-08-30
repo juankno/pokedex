@@ -1,25 +1,18 @@
-import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { FlatList, Platform, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SearchInput from '../components/SearchInput';
 import usePokemonSearch from '../hooks/usePokemonSearch';
+import { globalStyles } from '../theme/appTheme';
+import PokemonCard from '../components/PokemonCard';
+import Loading from '../components/Loading';
 
 const SearchScreen = () => {
 
   const { top } = useSafeAreaInsets();
   const { pokemons, isFetching } = usePokemonSearch();
 
-  if (true) {
-    return (
-      <View style={styles.activityContainer}>
-        <ActivityIndicator
-          size={50}
-          color="gray"
-        />
-        <Text>Cargando....</Text>
-      </View>
-    );
-  }
+  if (isFetching) { return <Loading />; }
 
   return (
     <View style={{
@@ -28,16 +21,29 @@ const SearchScreen = () => {
       marginHorizontal: 20,
     }}>
       <SearchInput />
+
+      <FlatList
+        data={pokemons}
+        keyExtractor={(pokemon) => pokemon.id}
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        // header
+        ListHeaderComponent={(
+          <Text style={{
+            ...globalStyles.title,
+            ...globalStyles.globalMargin,
+            paddingBottom: 10,
+          }}>
+            Pokedex
+          </Text>
+        )}
+        renderItem={({ item }) => (<PokemonCard pokemon={item} />)}
+
+
+      />
     </View>
   );
 };
 
 export default SearchScreen;
 
-const styles = StyleSheet.create({
-  activityContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
